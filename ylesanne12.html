@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ostukorv</title>
+</head>
+<body>
+    <h1>Ostukorv</h1>
+    <ul id="ostukorv"></ul>
+    <p id="kogusumma"></p>
+
+    <script>
+        // Ülesanne 10 kood
+        const ostukorv = {
+            tooted: [
+                { nimi:'Piim', hind:3.60, kogus:2 },
+                { nimi:'Leib', hind:2.00, kogus:1 },
+                { nimi:'Munad', hind:1.50, kogus:6 },
+                { nimi:'Juust', hind:4.20, kogus:1 },
+                { nimi:'Tomatid', hind:2.30, kogus:3 },
+            ],
+            lisaToode: function(nimi, hind, kogus) {
+                this.tooted.push({ nimi, hind, kogus });
+                this.kuvaSisu();
+            },
+            koguSumma: function() {
+                return this.tooted.reduce((sum, toode) => sum + toode.hind * toode.kogus, 0).toFixed(2);
+            },
+            kuvaSisu: function() {
+                const ostukorvElement = document.getElementById('ostukorv');
+                ostukorvElement.innerHTML = '';
+
+                this.tooted.forEach(toode => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${toode.nimi} - ${toode.hind} EUR - Kogus: ${toode.kogus}`;
+                    ostukorvElement.appendChild(listItem);
+                });
+
+                const kogusummaElement = document.getElementById('kogusumma');
+                kogusummaElement.textContent = `Ostukorvi kogu summa: ${this.koguSumma()} EUR`;
+            }
+        };
+
+        // Lisame ostukorvi toote
+        ostukorv.lisaToode('Kohv', 5.80, 2);
+
+        // Kuva ostukorvi sisu
+        ostukorv.kuvaSisu();
+    </script>
+</body>
+</html>

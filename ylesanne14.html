@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ülesanne 14 - List Group klassid</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <ul class="list-group" id="minuList">
+            <li class="list-group-item">Ootel: Lorem ipsum dolor sit amet</li>
+            <li class="list-group-item">Tehtud: Lorem ipsum dolor sit amet</li>
+            <li class="list-group-item">Viga: Lorem ipsum dolor sit amet</li>
+            <li class="list-group-item">Tehtud: Lorem ipsum dolor sit amet</li>
+            <li class="list-group-item">Tehtud: Lorem ipsum dolor sit amet</li>
+            <li class="list-group-item">Lorem ipsum dolor sit amet</li>
+            <li class="list-group-item">Viga: Lorem ipsum dolor sit amet</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Leiad kõik list-group-item elemendid
+            const items = document.querySelectorAll('.list-group-item');
+
+            // Itereerid läbi iga list-group-item elemendi
+            items.forEach(function (item) {
+                // Saad teksti
+                const text = item.textContent;
+
+                // Kontrolli, millist sõna tekstis sisaldub ja määra vastav klass
+                if (text.includes('Ootel')) {
+                    item.classList.add('list-group-item-warning');
+                } else if (text.includes('Tehtud')) {
+                    item.classList.add('list-group-item-success');
+                    // Täienda, et list-group-item-success'ile lisatakse ka font-weight: 700
+                    item.style.fontWeight = '700';
+                } else if (text.includes('Viga')) {
+                    item.classList.add('list-group-item-danger');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
